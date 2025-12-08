@@ -97,18 +97,16 @@ Resources:
   MySSMRole:
     Type: AWS::IAM::Role
     Properties:
-      RoleName: "String"      
-      AssumeRolePolicyDocument:  # Required
-        Version: "2012-10-17"		 	 	 
+      RoleName: SSMRoleForEC2
+      AssumeRolePolicyDocument:
+        Version: "2012-10-17"
         Statement:
           - Effect: Allow
             Principal:
-              Service:
-                - ec2.amazonaws.com
-            Action:
-              - 'sts:AssumeRole'      
-      ManagedPolicyArns: 
-        - arn:aws:iam::aws:policy/AmazonSSMFullAccess
+              Service: ec2.amazonaws.com
+            Action: sts:AssumeRole
+      ManagedPolicyArns:
+        - arn:aws:iam::aws:policy/AmazonSSMManagedInstanceCore
 
   MyInstanceProfile:
     Type: AWS::IAM::InstanceProfile
